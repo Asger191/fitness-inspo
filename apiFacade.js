@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:7076/api/v1/"
+const BASE_URL = "http://localhost:7007/api/v1/"
 const LOGIN_ENDPOINT = "auth/login"
 
 function handleHttpErrors(res) {

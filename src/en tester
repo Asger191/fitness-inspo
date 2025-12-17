@@ -1,1 +1,80 @@
-Skal lige se hvordan branches og pull request virker fra terminal til github
+Skal lige se hvordan branches og pull request virker fra terminal til 
+
+🖥️ Metode 2: Via terminal (meget brugt)
+
+Åbn terminal i VS Code (Ctrl + æ / Ctrl + `)
+
+1️⃣ Opret og skift til ny branch
+git checkout -b feature/login
+
+2️⃣ Tjek at du er på den rigtige branch
+git branch
+
+
+Den med * er den aktive branch.
+
+3️⃣ Commit dine ændringer
+git add .
+git commit -m "Add login page with JWT authentication"
+
+4️⃣ Push branchen
+git push -u origin feature/login
+
+
+-u betyder, at Git husker forbindelsen fremover.
+
+🔀 Lav Pull Request på GitHub
+1️⃣ Gå til jeres repository på GitHub
+
+Når branchen er pushed, ser du typisk:
+
+Compare & pull request
+
+Klik på den.
+
+2️⃣ Opret Pull Request
+
+Base branch: main
+
+Compare branch: feature/login
+
+Titel fx:
+
+Feature: Login with JWT
+
+
+Beskrivelse (kort):
+
+Implemented login functionality with JWT authentication and error handling
+
+
+Klik Create pull request
+
+3️⃣ Review & merge
+
+Den anden i gruppen reviewer koden
+
+Klik Merge pull request
+
+Slet branchen bagefter (god praksis)
+
+🧠 Branch-navngivning (god praksis til eksamen)
+feature/login
+feature/exercises
+feature/admin-panel
+fix/error-handling
+
+
+
+
+
+
+
+
+
+4️⃣ Opdater lokal main
+
+Nu skal din lokale main også opdateres:
+
+git checkout main
+git pull origin main
