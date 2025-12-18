@@ -36,8 +36,8 @@ const Exercises = () =>{
             {filteredExercise.map(exercise =>(
                 <div key={exercise.id} className={styles.card}>
                     <h3>{exercise.name}</h3>
-                    <p>{exercise.description}</p>
-                    <p><strong>Muschle group:</strong>{exercise.muscleGroup}</p>
+                    <p><strong>Instructions: </strong>{exercise.instructions}</p>
+                    <p><strong>Muscle group: </strong>{exercise.muscleGroup}</p>
                 </div>
 
             ))

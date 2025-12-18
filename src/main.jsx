@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home.jsx"
 import Login from "./pages/Login/Login.jsx"
 import Exercises from './components/exercise/Exercise.jsx';
 import Header from './components/header/Header.jsx';
+import Vision from './pages/Vision/Vision.jsx';
 
 createRoot(document.getElementById('root')).render(
 <BrowserRouter>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
   <Route path="/" element={<Home />}>
    <Route element={<Header/>}/>
    <Route  path='exercises' element={<Exercises/>}/>
+   <Route path='vision' element={<Vision/>}/>
 
   </Route>
   
