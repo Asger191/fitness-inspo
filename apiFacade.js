@@ -1,9 +1,10 @@
 const BASE_URL = "http://localhost:7007/api/v1/"
 const LOGIN_ENDPOINT = "auth/login"
+const REGISTER_ENDPOINT = "auth/register"
 
 function handleHttpErrors(res) {
 if (!res.ok) {
-  return Promise.reject({ status: res.status, fullError: res.json() })
+  return res.json().then( err => Promise.reject({ status: res.status, fullError: err }))
 }
 return res.json()
 } 
@@ -12,11 +13,21 @@ return res.json()
 here (REMEMBER to uncomment in the returned 
 object when you do)*/
 
-const login = (user, password) => {const options = makeOptions("POST", false, {username: user, password: password });
+const login = (email, password) => {const options = makeOptions("POST", false, {email: email, password: password });
 return fetch(BASE_URL + LOGIN_ENDPOINT, options)
     .then(handleHttpErrors)
-    .then(data => {setToken(data.token) })  
+    .then(data => {setToken(data.token) 
+      return data;
+    })  
  }
+
+ function register(email, password){
+  const options = makeOptions("POST", true, {email: email, password: password});
+  return fetch(BASE_URL + REGISTER_ENDPOINT, options)
+  .then(handleHttpErrors)
+  .then(data => {setToken(data.token)});
+ }
+
 
 const fetchData = (endpoint) => { 
     const options = makeOptions("GET",true);
@@ -59,19 +70,19 @@ const logout = () => {
 }
 
 
-const getUsernameAndRoles = () => {
+const getEmailAndRoles = () => {
         const token = getToken()
         if (token != null) {
             const payloadBase64 = getToken().split('.')[1]
             const decodedClaims = JSON.parse(window.atob(payloadBase64))
             const roles = decodedClaims.roles
-            const username = decodedClaims.username
-            return [username, roles]
+            const email = decodedClaims.email
+            return [email, roles]
         } else return []
     }
 
     const hasUserAccess = (neededRole, loggedIn) => {
-        const roles = getUsernameAndRoles().split(',')
+        const roles = getEmailAndRoles().split(',')
         return loggedIn && roles.includes(neededRole)
     }
 
@@ -83,8 +94,9 @@ const facade = {
     login,
     logout,
     fetchData,
-    getUsernameAndRoles,
-    hasUserAccess
+    getEmailAndRoles,
+    hasUserAccess,
+    register
 }
 
 export default facade;
