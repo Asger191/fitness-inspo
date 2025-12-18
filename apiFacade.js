@@ -1,5 +1,3 @@
-import { data } from "react-router"
-
 const BASE_URL = "http://localhost:7007/api/v1/"
 const LOGIN_ENDPOINT = "auth/login"
 const REGISTER_ENDPOINT = "auth/register"
