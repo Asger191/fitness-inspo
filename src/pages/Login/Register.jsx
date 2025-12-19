@@ -1,9 +1,10 @@
 import styles from "../Login/Login.module.css"
 import { useState } from "react";
 import facade from "../../../apiFacade";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Register(){
+    const navigate = useNavigate();
     const current = {email: "", password: ""};
     const [registerCredentials, setRegisterCredentials] = useState(current);
     const [error, setError] = useState("");
@@ -13,7 +14,7 @@ function Register(){
         facade.register(registerCredentials.email, registerCredentials.password)
         .then( () => {
             setError("")
-            console.log("performRegister suces")
+            navigate("/login")
         }).catch( err => {
             err.status === 401 ? setError("Something went wrong, try again later") : setError("Something went wrong, try again with diffrent email") 
         })
