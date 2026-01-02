@@ -1,15 +1,15 @@
 import './App.css'
 import Header from '../components/header/Header'
 
-function App() {
+function Home() {
 
   return (
     <div>
      
-      
+      <h1>Welcome to fitness inspo</h1>
       
     </div>
   )
 }
 
-export default App
+export default Home

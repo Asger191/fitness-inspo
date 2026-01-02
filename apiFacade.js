@@ -1,10 +1,19 @@
 const BASE_URL = "http://localhost:7007/api/v1/"
 const LOGIN_ENDPOINT = "auth/login"
 const REGISTER_ENDPOINT = "auth/register"
+const CREATE_ENDPOINT = "exercise"
+const UPDATE_ENDPOINT = "exercise"
+const DELETE_ENDPOINT = "exercise"
+
+
 
 function handleHttpErrors(res) {
 if (!res.ok) {
   return res.json().then( err => Promise.reject({ status: res.status, fullError: err }))
+}
+
+if(res.status === 204){
+  return null;
 }
 return res.json()
 } 
@@ -26,6 +35,27 @@ return fetch(BASE_URL + LOGIN_ENDPOINT, options)
   return fetch(BASE_URL + REGISTER_ENDPOINT, options)
   .then(handleHttpErrors)
   .then(data => {setToken(data.token)});
+ }
+
+ function createExercise(exercise){
+  const options = makeOptions("POST", true, exercise)
+
+  return fetch(BASE_URL + CREATE_ENDPOINT, options)
+  .then(handleHttpErrors)
+ }
+
+ function updateExercise(exercise){
+  const options = makeOptions("PUT", true, exercise)
+
+  return fetch(BASE_URL + UPDATE_ENDPOINT + "/" + exercise.id, options)
+  .then(handleHttpErrors)
+ }
+
+ function deleteExercise(id){
+  const options = makeOptions("DELETE", true)
+
+  return fetch(BASE_URL + DELETE_ENDPOINT + "/" + id, options)
+  .then(handleHttpErrors)
  }
 
 
@@ -81,9 +111,13 @@ const getEmailAndRoles = () => {
         } else return []
     }
 
-    const hasUserAccess = (neededRole, loggedIn) => {
-        const roles = getEmailAndRoles().split(',')
-        return loggedIn && roles.includes(neededRole)
+    const hasUserAccess = (neededRole) => {
+        const [, roles] = getEmailAndRoles()
+
+        if(Array.isArray(neededRole)){
+          return neededRole.some(role => roles.includes(role))
+        }
+        return  roles.includes(neededRole)
     }
 
 const facade = {
@@ -96,7 +130,10 @@ const facade = {
     fetchData,
     getEmailAndRoles,
     hasUserAccess,
-    register
+    register,
+    createExercise,
+    updateExercise,
+    deleteExercise
 }
 
 export default facade;

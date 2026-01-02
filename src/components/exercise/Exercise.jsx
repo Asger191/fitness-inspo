@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { NavLink } from "react-router"
 import facade from "../../../apiFacade"
 import styles from "./exercise.module.css"
 
@@ -26,6 +27,8 @@ const Exercises = () =>{
     return(
         <div className={styles.container}>
             <h1>Exercises</h1>
+            <NavLink to="/createExercise">Create Exercise</NavLink>
+            <NavLink to="/manageExercise">Mange Exercises</NavLink>
 
         <div className={styles.buttonContainer}>
             <button onClick={() => setMuscleGroup("upperbody")}>upperbody</button>

@@ -1,0 +1,45 @@
+.table {
+  display: grid;
+  grid-template-columns: 150px 250px 250px 250px 150px;
+  margin: 20px auto;
+  border: 2px solid #1f2a30;
+  
+  background: #1f2a30;
+  color: white;
+
+  row-gap: 20px;
+}
+
+.header {
+  background: #1f2a30;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 2px solid #2b3a42;
+}
+
+.cell {
+  padding: 12px;
+  border-bottom: 1px solid #32637d;
+  background: #23333b;
+}
+
+.method {
+  font-weight: bold;
+  color: white;
+}
+
+.faded {
+  opacity: 0.5;
+}
+
+.errors {
+  margin-top: 20px;
+  padding: 10px;
+  background: #182229;
+  border-left: 4px solid #4ca3dd;
+}
+
+.errors p {
+  margin: 5px 0;
+  color: #d0d8df;
+}
