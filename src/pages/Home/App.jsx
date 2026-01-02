@@ -4,7 +4,7 @@ import Exercises from "../../components/exercise/Exercise";
 import Header from "../../components/header/Header";
 import facade from "../../../apiFacade";
 
-function Home(){
+function App(){
 
 const [loggedIn, setLoggedIn] = useState(false);
 const [email, setEmail] = useState("");
@@ -35,7 +35,6 @@ function login(email, pass){
         <div>
             
             <div></div>
-            <h1>Home</h1>
             <Header loggedIn={loggedIn} logout={logout} email={email}/>
             <Outlet context={{login}}/>
         </div>
@@ -43,4 +42,4 @@ function login(email, pass){
     )
 }
 
-export default Home;
+export default App;
