@@ -11,7 +11,7 @@ import Vision from './pages/Vision/Vision.jsx';
 import App from './pages/Home/App.jsx';
 import ProtectedRoute from './security/ProtectedRoute.jsx';
 import CreateExercise from './components/create-exercise/CreateExercise.jsx';
-import ManageExercise from './components/manage_exercise/manageExercise.jsx';
+import ManageExercise from './components/manage_exercise/ManageExercise.jsx';
 import Endpoints from './pages/Endpoints/Endpoints.jsx';
 
 createRoot(document.getElementById('root')).render(
