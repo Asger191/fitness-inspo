@@ -11,7 +11,8 @@ const LOGIN_ENDPOINT = "exercise"
 const Exercises = () =>{
 
     const [exercise, setExercise] = useState([])
-    const [muscleGroup, setMuscleGroup] = useState(null)    
+    const [muscleGroup, setMuscleGroup] = useState(null) 
+    const isAdmin = facade.hasUserAccess("ADMIN")   
 
     useEffect(()=>{
         facade.fetchData('exercise')
@@ -27,10 +28,20 @@ const Exercises = () =>{
     return(
         <div className={styles.container}>
             <h1>Exercises</h1>
-            <NavLink to="/createExercise">Create Exercise</NavLink>
-            <NavLink to="/manageExercise">Mange Exercises</NavLink>
+
+            
+            
+            
 
         <div className={styles.buttonContainer}>
+            {isAdmin && (
+                
+                <>
+                    <NavLink to="/createExercise"><button>Create Exercise</button></NavLink>
+                    <NavLink to="/manageExercise"><button>Manage Exercises</button></NavLink>
+                </>
+            
+            )}
             <button onClick={() => setMuscleGroup("upperbody")}>upperbody</button>
             <button onClick={() => setMuscleGroup("lowerbody")}>lowerbody</button>
         </div>

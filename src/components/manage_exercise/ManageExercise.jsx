@@ -77,6 +77,7 @@ const ManageExercise = ({exerciseToEdit}) => {
     const filteredExercise = muscleGroup ? 
     exercise.filter(ex => ex.muscleGroup === muscleGroup) : [];
 
+                //<input value={instructions} placeholder="instructions" type="text" onChange={e => setInstructions(e.target.value)}/>
 
     return(
         
@@ -85,21 +86,30 @@ const ManageExercise = ({exerciseToEdit}) => {
         <div className={styles.container}>
             <h1>Manage exercises</h1>
 
-            <label>Name</label>
+                
+           
                 <input value={name} placeholder="exercise name" type="text" onChange={e => setName(e.target.value)}/>
 
-                <select value={muscleGroup} onChange={e => setMusclegroup(e.target.value)}>
+                <select className={`${styles.field} ${styles.select}`} value={muscleGroup} onChange={e => setMusclegroup(e.target.value)}>
                     <option value={""} disabled >choose musclegroup</option>
                     <option value="lowerbody">lowerbody</option>
                     <option value="upperbody">upperbody</option>
                 </select>
 
-                <input value={instructions} placeholder="instructions" type="text" onChange={e => setInstructions(e.target.value)}/>
+
+                
+
                 <input value={equipment} placeholder="equipment" type="text" onChange={e => setEquipment(e.target.value)}/>
                 <button onClick= {saveHandler} disabled={!exerciseId}>Save Exercise</button>
             
+            <textarea
+                 className={`${styles.field} ${styles.textarea}`}
+                 value={instructions}
+                    placeholder="instructions"
+                    onChange={e => setInstructions(e.target.value)}
+                />
 
-        <div className={styles.buttonContainer}>
+        <div className={styles.buttoncontainer}>
             <button onClick={() => setMusclegroup("upperbody")}>upperbody</button>
             <button onClick={() => setMusclegroup("lowerbody")}>lowerbody</button>
         </div>
