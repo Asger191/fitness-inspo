@@ -38,6 +38,14 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+
+
+select:hover{
+  border: color(srgb red green rgb(0, 0, 0));
+}
+
+
 button:hover {
   border-color: #ffaa64;
 }

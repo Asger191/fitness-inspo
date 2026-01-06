@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import facade from "../../../apiFacade"
+import styles from "./CreateExercise.module.css"
 
 function CreateExercise ({exerciseToEdit, updateExercise, reloadExercise}) {
 
@@ -51,22 +52,31 @@ function CreateExercise ({exerciseToEdit, updateExercise, reloadExercise}) {
 
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>Name</label>
-                <input value={name} placeholder="exercise name" type="text" onChange={e => setName(e.target.value)}/>
+        <div className={styles.wrapper}>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                
+                <input className={styles.field} value={name} placeholder="exercise name" type="text" onChange={e => setName(e.target.value)}/>
 
-                <select value={muscleGroup} onChange={e => setMusclegroup(e.target.value)}>
+                <select className={styles.bodyselect} value={muscleGroup} onChange={e => setMusclegroup(e.target.value)}>
                     <option value={""} disabled >choose musclegroup</option>
                     <option value="lowerbody">lowerbody</option>
                     <option value="upperbody">upperbody</option>
                 </select>
 
-                <input value={instructions} placeholder="instructions" type="text" onChange={e => setInstructions(e.target.value)}/>
-                <input value={equipment} placeholder="equipment" type="text" onChange={e => setEquipment(e.target.value)}/>
+
+                
+                <textarea 
+                className={`${styles.field} ${styles.instructions}`}
+                placeholder="instructions"
+                value={instructions}
+                onChange={e => setInstructions(e.target.value)}             
+                />
+
+
+                <input className={styles.field} value={equipment} placeholder="equipment" type="text" onChange={e => setEquipment(e.target.value)}/>
                     <button type="submit">{exerciseToEdit ? "Update exercise" : "Create exercise"}</button>
-            </form>
             
+            </form>
 
         </div>
     )

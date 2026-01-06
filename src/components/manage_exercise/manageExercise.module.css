@@ -16,3 +16,69 @@
   font-weight: bold;
   background-color: #162024;
 }
+
+.bodyselect{
+  height: 20px;
+  font-size: 20px;
+  
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  
+}
+
+.select:hover{
+ border-color: black;
+}
+
+.field {
+  height: 35px;
+  padding: 10px 12px;
+  font-size: 12px;
+
+  background-color: #413c3c;
+  color: white;
+
+  border: 1px solid #555;
+  border-radius: 8px;
+
+  
+  box-sizing: border-box;
+}
+
+.select {
+  appearance: none;
+}
+
+
+.textarea {
+  display: block;
+  width: 50%;
+  max-width: 900px;
+  min-height: 80px;
+  margin: 8px auto; /* centrer og giv luft */
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.textarea:hover{
+  border-color: black;
+}
+
+
+.buttoncontainer{
+
+  display: flex;
+  padding: 20px;
+  row-gap: 20px;
+  justify-content: center;
+  gap: 20px;
+
+}
+
+
+
+
+

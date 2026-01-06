@@ -26,7 +26,7 @@ function Login(){
         <div className={styles.divContainer}>
              <h1>Login</h1>
              {error && <p className={styles.error}>{error}</p>}
-            <form onSubmit={performLogin}>
+            <form className={styles.form} onSubmit={performLogin}>
                 <label>Username</label>
                 <input placeholder="email" type="text" value={loginCredentials.email} 
                 onChange={(e) => setLoginCredentials({...loginCredentials, email: e.target.value})}/>
