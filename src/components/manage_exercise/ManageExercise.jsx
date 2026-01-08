@@ -1,38 +1,24 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+
 import facade from "../../../apiFacade"
 import styles from "./manageExercise.module.css"
+import { useOutletContext } from "react-router"
 
-const ManageExercise = ({exerciseToEdit}) => {
+const ManageExercise = () => {
+
+    const {exercises, setExercises} = useOutletContext()
+
 
     const [instructions, setInstructions] = useState("")
     const [equipment, setEquipment] = useState("")
     const [muscleGroup, setMusclegroup] = useState("")
     const [name, setName] = useState("")
-    const [exercise, setExercise] = useState([])
     const [exerciseId, setExerciseId] = useState(null)
-    //const [muscleGroup, setMuscleGroup] = useState(null)  
-
-
-    useEffect(()=>{
-        facade.fetchData('exercise')
-        .then(data=>setExercise(data))
-        .catch(err => console.error(err))
-        
-    },[])
-
-    useEffect(()=>{
-        if(exerciseToEdit){
-            setInstructions(exerciseToEdit.instructions || "")
-            setEquipment(exerciseToEdit.equipment || "")
-            setMusclegroup(exerciseToEdit.musclegroup || "")
-            setName(exerciseToEdit.name)
-        }
-    },[exerciseToEdit])
 
     const deleteHandler = (id) =>{
         facade.deleteExercise(id)
         .then(() => facade.fetchData("exercise"))
-        .then(data => setExercise(data))
+        .then(data => setExercises(data))
         .catch(err => console.error(err))
     }
 
@@ -61,7 +47,7 @@ const ManageExercise = ({exerciseToEdit}) => {
                 setExerciseId(null)
                 return facade.fetchData("exercise")
             })
-            .then(data => setExercise(data))
+            .then(data => setExercises(data))
             .catch(err => console.error(err))
 
     }
@@ -75,9 +61,8 @@ const ManageExercise = ({exerciseToEdit}) => {
     }
 
     const filteredExercise = muscleGroup ? 
-    exercise.filter(ex => ex.muscleGroup === muscleGroup) : [];
+    exercises.filter(ex => ex.muscleGroup === muscleGroup) : [];
 
-                //<input value={instructions} placeholder="instructions" type="text" onChange={e => setInstructions(e.target.value)}/>
 
     return(
         
@@ -133,9 +118,7 @@ const ManageExercise = ({exerciseToEdit}) => {
                     <div><button onClick={() => editHandler(exercise)}>Edit</button></div>
                     <div><button onClick={() => deleteHandler(exercise.id)}>Delete</button></div>
                     </>
-            ))
-
-            }
+            ))}
 
         </div>
 
