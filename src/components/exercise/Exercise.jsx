@@ -1,37 +1,32 @@
 import { useEffect, useState } from "react"
-import { NavLink } from "react-router"
+import { NavLink, useOutletContext } from "react-router"
 import facade from "../../../apiFacade"
 import styles from "./exercise.module.css"
-
-const BASE_URL = "http://localhost:7076/api/v1/"
-const LOGIN_ENDPOINT = "exercise"
-
 
 
 const Exercises = () =>{
 
-    const [exercise, setExercise] = useState([])
+    const {exercises, setExercises} = useOutletContext()
+
     const [muscleGroup, setMuscleGroup] = useState(null) 
     const isAdmin = facade.hasUserAccess("ADMIN")   
 
+    /*
     useEffect(()=>{
         facade.fetchData('exercise')
-        .then(data=>setExercise(data))
+        .then(data=>setExercises(data))
         .catch(err => console.error(err))
         
     },[])
+    */
 
     const filteredExercise = muscleGroup ? 
-    exercise.filter(ex => ex.muscleGroup === muscleGroup) : [];
+    exercises.filter(ex => ex.muscleGroup === muscleGroup) : [];
 
 
     return(
         <div className={styles.container}>
             <h1>Exercises</h1>
-
-            
-            
-            
 
         <div className={styles.buttonContainer}>
             {isAdmin && (

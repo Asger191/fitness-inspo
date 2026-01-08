@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Exercises from "../../components/exercise/Exercise";
 import Header from "../../components/header/Header";
 import facade from "../../../apiFacade";
 
@@ -9,6 +8,15 @@ function App(){
 const [loggedIn, setLoggedIn] = useState(false);
 const [email, setEmail] = useState("");
 const [roles, setRoles] = useState([]);
+
+const [exercises, setExercises] = useState([])
+
+useEffect(() =>{
+    facade.fetchData("exercise")
+    .then(data => setExercises(data))
+    .catch(error => console.error(error))
+
+},[])
 
 
 function logout(){
@@ -36,7 +44,7 @@ function login(email, pass){
             
             <div></div>
             <Header loggedIn={loggedIn} logout={logout} email={email}/>
-            <Outlet context={{login}}/>
+            <Outlet context={{login, exercises, setExercises}}/>
         </div>
         
     )

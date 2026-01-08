@@ -1,23 +1,13 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import facade from "../../../apiFacade"
 import styles from "./CreateExercise.module.css"
 
-function CreateExercise ({exerciseToEdit, updateExercise, reloadExercise}) {
+function CreateExercise () {
 
     const [instructions, setInstructions] = useState("")
     const [equipment, setEquipment] = useState("")
     const [muscleGroup, setMusclegroup] = useState("")
     const [name, setName] = useState("")
-
-
-    useEffect(()=>{
-        if(exerciseToEdit){
-            setInstructions(exerciseToEdit.instructions || "")
-            setEquipment(exerciseToEdit.equipment || "")
-            setMusclegroup(exerciseToEdit.musclegroup || "")
-            setName(exerciseToEdit.name)
-        }
-    },[exerciseToEdit])
 
 
     const resetForm = () =>{
@@ -36,21 +26,12 @@ function CreateExercise ({exerciseToEdit, updateExercise, reloadExercise}) {
             muscleGroup,
             name
         }
-
-        if(exerciseToEdit){
-            updateExercise({...newExercise, id: exerciseToEdit.id})
-            resetForm()
-            return
-        }
-
         facade.createExercise(newExercise)
 
         resetForm()
-
     }
 
-
-
+    
     return(
         <div className={styles.wrapper}>
             <form className={styles.form} onSubmit={handleSubmit}>
@@ -74,7 +55,7 @@ function CreateExercise ({exerciseToEdit, updateExercise, reloadExercise}) {
 
 
                 <input className={styles.field} value={equipment} placeholder="equipment" type="text" onChange={e => setEquipment(e.target.value)}/>
-                    <button type="submit">{exerciseToEdit ? "Update exercise" : "Create exercise"}</button>
+                    <button type="submit">{"Create exercise"}</button>
             
             </form>
 
