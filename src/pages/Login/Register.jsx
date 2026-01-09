@@ -25,7 +25,7 @@ function Register(){
         <div className={styles.divContainer}>
              <h1>Create Account</h1>
              {error && <p className={styles.error}>{error}</p>}
-            <form onSubmit={performRegister}>
+            <form className={styles.form} onSubmit={performRegister}>
                 <label>Insert username</label>
                 <input placeholder="email" type="text" value={registerCredentials.email} 
                 onChange={(e) => setRegisterCredentials({...registerCredentials, email: e.target.value})}/>
