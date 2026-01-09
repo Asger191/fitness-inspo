@@ -13,6 +13,8 @@ import ProtectedRoute from './security/ProtectedRoute.jsx';
 import CreateExercise from './components/create-exercise/CreateExercise.jsx';
 import ManageExercise from './components/manage_exercise/ManageExercise.jsx';
 import Endpoints from './pages/Endpoints/Endpoints.jsx';
+import Users from './components/user/Users.jsx';
+import DeleteUser from './components/user/DeleteUser.jsx';
 
 createRoot(document.getElementById('root')).render(
 <BrowserRouter>
@@ -31,6 +33,10 @@ createRoot(document.getElementById('root')).render(
     <Route path='endpoints' element={<ProtectedRoute role={["ADMIN", "USER"]}> 
     <Endpoints/>
     </ProtectedRoute>}/>
+
+    <Route path='users' element={<ProtectedRoute role={["ADMIN"]}>
+      <Users/>
+    </ProtectedRoute>}></Route>
 
     <Route path='createExercise' element={<CreateExercise/>}/>
    <Route path='vision' element={<Vision/>}/>

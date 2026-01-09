@@ -1,9 +1,15 @@
+//Dev URL:
+//const BASE_URL = "http://localhost:7007/api/v1/"
+
+//DEPLOYED URL:
 const BASE_URL = "/api/v1/"
+
 const LOGIN_ENDPOINT = "auth/login"
 const REGISTER_ENDPOINT = "auth/register"
 const CREATE_ENDPOINT = "exercise"
 const UPDATE_ENDPOINT = "exercise"
 const DELETE_ENDPOINT = "exercise"
+const USER_DELETE_ENDPOINT = 'auth/users';
 
 
 
@@ -55,6 +61,14 @@ return fetch(BASE_URL + LOGIN_ENDPOINT, options)
   const options = makeOptions("DELETE", true)
 
   return fetch(BASE_URL + DELETE_ENDPOINT + "/" + id, options)
+  .then(handleHttpErrors)
+ }
+
+ //Delete User by id
+  function deleteUser(id){
+  const options = facade.makeOptions("DELETE", true)
+
+return fetch(BASE_URL + USER_DELETE_ENDPOINT + "/" + id, options)
   .then(handleHttpErrors)
  }
 
@@ -133,7 +147,8 @@ const facade = {
     register,
     createExercise,
     updateExercise,
-    deleteExercise
+    deleteExercise,
+    deleteUser
 }
 
 export default facade;

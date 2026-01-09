@@ -1,9 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import styles from "./Header.module.css"
-
+import facade from "../../../apiFacade"
 import Home from "../../layout/Home"
 
 const Header = ({loggedIn, email, logout}) => {
+
+    const isAdmin = loggedIn && facade.hasUserAccess("ADMIN");
 
     const navigate = useNavigate()
 
@@ -21,6 +23,11 @@ const Header = ({loggedIn, email, logout}) => {
                 <NavLink to="/exercises"> Exercises </NavLink>
                 <NavLink to="/vision">Vision</NavLink>
                 <NavLink to="/endpoints">Endpoints</NavLink>
+               
+                {isAdmin && (<>
+                    <NavLink to="/users">Users</NavLink>
+                    </>)}
+                    
                 </div>
         <div className={styles.toTheRight}>
                 {!loggedIn ? <NavLink to="/login" className={styles.login} >Login</NavLink> :
